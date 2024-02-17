@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function set() {
+            cook = document.getElementById("c").value;
+            document.cookie = "username="+cook;
+            alert("cookie has been set");
+        }
+        function get() {
+            cookies = document.cookie;
+            if (cookies!=0) {
+                cookee = cookies.split("=")
+                alert("Hello "+cookee[1])
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="text" id="c">
+    <button id="b1" onclick="set()">Set Coo</button>
+    <button id="b2" onclick="get()">Get cook</button>
+</body>
+</html>
