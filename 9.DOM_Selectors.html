@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOM Selectors</title>
+    </head>
+    <body style="text-align: center;">
+        <h1 id="title" class="head">Document Object Model</h1>
+        <p id="para" name="para">DOM statement <span style="display:none">Hidden text</span></p>
+        <p id="para2">Second line</p>
+        <input id="pass" type="password">
+        <ul>                        <!-- u>li*3 -->
+            <li class="listItem">One</li>
+            <li class="listItem">Two</li>
+            <li class="listItem">Three</li>
+        </ul>
+        <div class="parent">
+            <div class="day">Monday</div>
+            <!-- Holiday -->
+            <div class="day">Tuesday</div>
+            <div class="day">Wednesday</div>
+            <div class="day">Thursday</div>
+            <div class="day">Friday</div>
+        </div>
+
+<!-- DOM Selectors (run in browser console) -->
+<script>
+document.getElementById("title").id;
+document.getElementById("title").className;
+document.getElementById("title").getAttribute("class");     //gets attributes of selected HTML element
+document.getElementById("para").setAttribute("name", "paragraph");  //overwites attribute
+const title = document.getElementById("title")                      // saving in a variable
+const para = document.getElementById("para")
+title.style.backgroundColor="green"                             // giving style attribute
+title.innerHTML;                    // Value inside the html tag
+title.innerText;                    //all the text visible on the page
+title.innerContent;                 // all contents including hidden ones
+
+document.querySelector("p");            //first matching tag
+document.querySelector(".head")         // first matching class (# for ID)
+document.querySelector("input[type='password']")    //tag with attribute
+const uList = document.querySelector("ul")
+const oneList = uList.querySelector("li")
+oneList.style.color="red"
+oneList.innerText = "Red"
+
+const items = uList.querySelectorAll("li")      //returns a nodelist (similar to array but lack functions)
+items[1].style.color="blue"                     //can't add properties to all elements at once
+items.forEach(l => l.style.backgroundColor="gray")
+
+const classItems = document.getElementsByClassName("listItem")      //returns a HTMLCollection
+let classArray = Array.from(classItems)                             // converts into Array
+classArray.forEach(i => i.style.margin="5px")                   // Array functionalities
+
+const parent = document.querySelector(".parent")
+console.log(parent);
+console.log(parent.children[1].innerHTML);                  // First Child
+let parChild = parent.children
+for (const days of parChild) {                  // Loops through Children divs
+    console.log(days.innerHTML)
+}
+console.log(parent.firstElementChild);
+console.log(parent.lastElementChild);
+
+const dayOne = document.querySelector(".day")           // first element
+console.log(dayOne.innerText);
+console.log(dayOne.parentElement);                  // parent of the child
+console.log(dayOne.nextElementSibling);             // Next element with same class name
+console.log("NODELIST:",parent.childNodes)        //nodelist of elements inside the parent including \n, comments
+
+// Creating Elements
+const div = document.createElement("div")
+console.log(div);
+div.className="custom"
+div.id = "customID"
+div.setAttribute("title","Custom made div")
+div.style.backgroundColor="grey"
+div.style.color="green"
+div.style.margin="10px"
+const text = document.createTextNode("Hello World")
+div.appendChild(text)
+
+let list = document.createElement("ul")
+list.id = "list"
+list.className = "list"
+
+function addElement(item){
+    let listItem = document.createElement("li")
+    listItem.innerHTML = item
+    list.appendChild(listItem)                                  // (works because list is being appended at the same time)
+    // document.querySelector(".list").appendChild(listItem)       // searches for className in webpage
+}                                                       // (won't work cuz haven't appended the list and div to webpage)
+
+function optiAddElement(item) {
+    let listItem = document.createElement("li")             //optimised approach   
+    listItem.appendChild(document.createTextNode(item))     // innerHTML traverses the entire list tree
+    list.appendChild(listItem)
+}
+addElement("Javascript")
+addElement("Python")
+optiAddElement("Java")
+
+div.appendChild(list)                                   // Adding list to div
+document.body.appendChild(div)                          // Adding the div to document body (webpage)
+addElement("C++")
+
+// Edit Elements
+let langList = document.querySelector(".list")                      // Selecting the languages list
+let secondItem = langList.querySelector("li:nth-child(2)")          // Searching for the second element
+console.log(secondItem.innerHTML);
+secondItem.innerHTML = "Typescript"                                 // Replacing the inner HTML content
+
+let firstItem = langList.querySelector("li:first-child")            //Selecting the first child
+console.log(firstItem.innerHTML);
+let newItem = document.createElement("li")                      // creating new li element and giving it value
+newItem.innerHTML = "Rust"
+firstItem.replaceWith(newItem)                                 // Replacing the selected li element
+
+let lastItem = langList.querySelector("li:last-child")
+console.log(lastItem.innerHTML);
+lastItem.outerHTML = "<li>C#</li>"                              // changing the entire HTML
+
+const thirdItem = langList.querySelector("li:nth-child(3)")
+console.log(thirdItem.innerHTML);
+thirdItem.remove()                                              // removing elements
+</script>
+
+
+    </body>
+</html>
