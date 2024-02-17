@@ -1,0 +1,26 @@
+*** Javascript Execution Context ***
+
+How things work in JS?      Single threaded process
+
+Global Execution Context: Creates an environment for JS code to execute (declares a global scope)
+    {my code} => Global Exectuion Context   =>  "this" keyword  ex. Window object for browsers, {} for node, etc
+    Other execution contexts: Function ExecutionContext, Eval Execution Context
+
+1. Memory Creation Phase : Memory is allocated to all variables (undefined) and functions (func defination/ func code)
+
+2. Execution Phase : Code is excecuted. Variables are given their assigned values and for functions, it declares a Function Execution Context: new variable environment + execution thread. Since it's a new EC, creation phase and execution phase will be executed again. Function EC are created everytime the function is called. return statements are returned back to Global EC and the Function Ec gets deleted.
+
+*** Call Stack : JS Execution Context works on the LIFO principle. ***
+
+example code:
+function one() { console.log("One"); two(); }
+function two() { console.log("Two"); three(); }
+function three() { console.log("Three"); }
+one();
+
+Call Stack for this would be:
+Global EC => one() (Function EC) => two()       // Since two() is being called inside one()
+Global Ec => two() => three()                   // three() will be added to stack and one() will be removed
+Global Ec => three()                            // two() will be removed
+Global EC                                       // three() will be removed and then GEC will end 
+-- end --
