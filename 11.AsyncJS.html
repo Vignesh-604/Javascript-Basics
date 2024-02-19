@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Async Javascript</title>
+    </head>
+    <body>
+        <h1 id="title">Javascript is being updated...</h1> 
+        <button id="stopChange">Don't change</button>
+        <h1>Stopwatch: <code id="time">0</code></h1>
+        <button id="stopTimer">Stop Timer</button>
+        <button id="reset">Reset Timer</button>
+    </body>
+    <script>
+        let title = document.querySelector("#title")
+        let change = function(){
+            title.innerHTML="Javascript Updated!"
+        }
+        let changeTitle = setTimeout(change, 5000)
+
+        document.getElementById("stopChange").addEventListener("click", ()=>{
+            clearTimeout(changeTitle)
+            console.log("No changes made");
+        })
+
+        let time = document.getElementById("time")
+        let counter = 0
+        let stopwatch = function(){
+            counter++
+            time.innerHTML=counter
+        }
+        let interval = setInterval(stopwatch,1000)
+
+        document.getElementById("stopTimer").addEventListener("click", ()=>{
+            clearInterval(interval)
+        })
+        document.getElementById("reset").addEventListener("click", ()=>{
+            time.innerHTML=0
+            interval = setInterval(stopwatch,1000)
+            counter=0
+        })
+    </script>
+</html>

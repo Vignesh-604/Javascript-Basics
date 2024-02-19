@@ -1,6 +1,6 @@
 *** Javascript Execution Context ***
 
-How things work in JS?      Single threaded process
+How things work in JS?      Single threaded process         Synchronous
 
 Global Execution Context: Creates an environment for JS code to execute (declares a global scope)
     {my code} => Global Exectuion Context   =>  "this" keyword  ex. Window object for browsers, {} for node, etc
@@ -24,3 +24,28 @@ Global Ec => two() => three()                   // three() will be added to stac
 Global Ec => three()                            // two() will be removed
 Global EC                                       // three() will be removed and then GEC will end 
 -- end --
+
+*** DOM : Document Object Model ***
+The Document Object Model (DOM) is a programming interface for HTML and XML documents. It defines the logical structure (tree) of documents (HTML elements) and the way a document is accessed and manipulated.
+
+Using DOM, the JavaScript gets access to HTML as well as CSS of the web page and can also add behavior to the HTML elements. So basically Document Object Model is an API that represents and interacts with HTML or XML documents.
+
+
+*** Async Javascript ***
+
+JS Engine --> Memory Heap and Call Stack
+
+Web API (Runtime environment: Browser or Node)
+    DOM API : Tree structure model for document/html. Not supported in Node
+    setTimeout : Executes once after a set period of time
+    setInterval : Executes repeatedly after a set period of time
+    fetch() : sends to High priotiy queue
+
+Register Call Back: Contains functions which are passed from setTimeout, setInterval or from some event. Async - executes whenever user wants it to execute
+
+Task Queue: Gets functions from Register Call Back and sends them to Call Stack. Callback functions
+
+Promise : High Priority Task Queue using fetch()
+
+Example Flow of a function containing setTimeout: Called an Event Loop
+Call Stack  --call->  Web API  --after set time interval->  Register Call Back  ---> Task Queue ---> Call Stack 

@@ -13,6 +13,7 @@ buttons.forEach(button => {
   })
 })
 ```
+
 ### Project 2: BMI calculator
 ```javascript
 let form = document.querySelector("form")
@@ -34,6 +35,7 @@ form.addEventListener("submit", function(e){
   }
 })
 ```
+
 ### Project 3: Clock
 ```javascript
 let clock = document.querySelector("#clock")
@@ -42,6 +44,7 @@ setInterval(function(){
   clock.innerHTML=date.toLocaleTimeString()
 },1000)
 ```
+
 ### Project 4: Number Guessing
 ```javascript
 let ran = Math.round(Math.random()*100+1)
@@ -113,4 +116,51 @@ form.addEventListener("submit", function(e){
   if (playable) validate()
   else playAgain()
 })
+```
+
+### Project 5: Keyboard key values
+```javascript
+let insert = document.querySelector("#insert")
+
+window.addEventListener("keydown",function(e){
+  insert.innerHTML=`
+    <table>
+      <tr>
+        <th>Key</th>
+        <th>Key Code</th>
+        <th>Code</th>
+      </tr>
+      <tr>
+        <td>${e.key === " "? "Space": e.key}</td>
+        <td>${e.keyCode}</td>
+        <td>${e.code}</td>
+    </table
+  `
+})
+
+```
+
+### Project 6: Random background color generator
+```javascript
+let start = document.getElementById("start")
+let stop = document.getElementById("stop")
+
+let randomColor = function() {
+  let hex = "0123456789ABCDEF"
+  let code= "#"
+  for(let i=0; i<6; i++){
+    code+=hex[Math.round(Math.random()*15)]
+  }
+  console.log(code)
+  document.querySelector("body").style.backgroundColor=code
+}
+let ranColor;
+start.addEventListener("click",()=>{
+  if (!ranColor) ranColor = setInterval(randomColor,500)
+})
+stop.addEventListener("click",()=> {
+  clearInterval(ranColor)
+  ranColor=null             // clears current values
+})
+
 ```

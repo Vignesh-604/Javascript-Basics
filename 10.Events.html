@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Events</title>
+        <style>
+            ul{
+                background-color: grey;
+            }
+            li{
+                background-color:beige;
+                padding:5px;
+                margin: 10px;
+            }
+        </style>
+    </head>
+    <body style="font-size: 30px;">
+        <h2>List of Items</h2>
+        <ul id="list">
+            <li id="apple" class="apple">Apple</li>
+            <li id="banana" class="banana">Banana</li>
+            <li id="carrot" class="carrot">Carrot</li>
+            <li id="google" class="google"><a href="https://google.com">Google.com</a></li>
+            <li><span id="removable">Removable Element</span></li>
+        </ul>
+        <h2 id="message"></h2>
+    </body>
+    <script>
+
+        let list =document.getElementById("list")
+        let apple  = document.getElementById("apple")
+        let banana  = document.getElementById("banana")
+        let carrot = document.getElementById("carrot")
+        let google = document.getElementById("google")
+        let msg  = document.getElementById("message")
+
+        //apple.onclick = () => alert("An apple a day keeps the doctor away.")        //less features
+
+        apple.addEventListener("click", function(e){
+            // console.log(e)                                                  // addEventListener attributes
+            msg.innerHTML=("An apple a day keeps the doctor away.")
+            console.log("An apple a day keeps the doctor away.");
+        }, false)                                                   //Doesn't matter if no children elements
+
+        banana.addEventListener("click", function(e){
+            msg.innerHTML=("Clicked on the banana.")
+            console.log("Clicked on the banana.")
+        }, true)
+
+        carrot.addEventListener("click", function(e){
+            msg.innerHTML=("Carrots are good for eyes.")
+            console.log("Carrots are good for eyes.")
+            e.stopPropagation()
+            //doesn't propogate to parent bubble, if parent bubble is false
+            // if parent bubble is set to true, the parent will be executed first then child
+        }, true)
+
+        list.addEventListener("click", function(e){
+            msg.innerHTML=("Clicked on the entire list.")
+            console.log("Clicked on the entire list.")
+        }, true)                                // since true, child elements will be executed after this
+
+        /*
+        Event Propogation
+        Event Bubbling (false): child(li) -> parent(ul)     default
+        Event Capturing (true): parent (ul) -> child(li)
+        
+         Other attributes:
+        type, timestamp, preventDefault, target, toElement, srcElement, currentTarget
+        clientX, clientY, screenX, screenY, altkey, ctrlkey, shiftkey, keyCode
+        */
+        
+        google.addEventListener("click",(e)=>{
+            msg.innerHTML=("No jobs at google.")
+            console.log("No jobs at google.")
+            e.preventDefault()
+        })
+
+        list.addEventListener("click", (e)=> {
+            console.log(e.target.parentNode)        // parent node of clicked element
+            console.log(e.target.tagName);          // tag name of clicked element
+            if (e.target.tagName === "SPAN") {
+                let remItem = e.target.parentNode   // span - li - ul - body - html
+                remItem.remove()                    // removes element -> removes the li containing span
+            }
+        })
+    </script>
+</html>
