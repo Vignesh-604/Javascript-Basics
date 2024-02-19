@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>API Requests</title>
+        <style>
+            th,td{
+                font-size: 20px;
+                padding: 5px;
+            }
+            #card{
+                box-shadow: 0 4px 4px rgba(0,0,0,0.2);
+                transition: 0.3s;
+                padding: 16px;
+                border-radius: 5px;
+                border: 5px;
+                max-width: 250px;
+                margin: auto;
+                text-align: center;
+            }
+            img{
+                height: 200px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>The XMLHttpRequest.readyState property returns the state an XMLHttpRequest client is in</h1><br>
+        <table border="5">
+            <tr>
+                <th>Value</th>
+                <th>State</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>UNSENT</td>
+                <td>Client has been created. open() not called yet.</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>OPENED</td>
+                <td>open() has been called</td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td>HEADERS_RECEIVED</td>
+                <td>send() has been called, and headers and status are available.</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>LOADING</td>
+                <td>Downloading; responseText holds partial data.</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>DONE</td>
+                <td>The operation is complete.</td>
+            </tr>
+        </table>
+        <div id="card">
+            <img id="img" src="#" alt="profilepic">
+            <h1 id="name"></h1>
+            <!-- <button><a id="btn" href="">Github Link</a></button> -->
+        </div>
+    </body>
+    <script>
+        const reqURL = "https://api.github.com/users/Vignesh-604"   //JSON file
+        const xhr = new XMLHttpRequest();           // creating an XHR object
+        xhr.open("GET",reqURL)                      // getting the data from api
+        xhr.onreadystatechange = function(){
+            console.log(xhr.readyState);
+            if (xhr.readyState === 4){
+                let data = this.responseText        //this: current context, responseText stores the value that has ben fetched
+                console.log(data)
+                console.log(typeof data);           // retrived data may be in form of string
+
+                let dataObj = JSON.parse(data)      // converts the retrived data from string to JSON
+                console.log(dataObj.name);          // fetching name
+                console.log(dataObj.html_url);
+
+                let img = document.getElementById("img")
+                let name = document.getElementById("name")
+                let btn = document.querySelector("a")
+                
+                img.setAttribute("src",dataObj.avatar_url)
+                name.innerHTML=dataObj.name
+                // btn.setAttribute=("href",dataObj.html_url)       //not working
+            }
+        }
+        xhr.send()                                  // sending request
+    </script>
+</html>

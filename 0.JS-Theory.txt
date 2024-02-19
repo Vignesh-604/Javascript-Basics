@@ -45,7 +45,14 @@ Register Call Back: Contains functions which are passed from setTimeout, setInte
 
 Task Queue: Gets functions from Register Call Back and sends them to Call Stack. Callback functions
 
-Promise : High Priority Task Queue using fetch()
+Microtask Queue: High Priority Task Queue using fetch()
 
 Example Flow of a function containing setTimeout: Called an Event Loop
 Call Stack  --call->  Web API  --after set time interval->  Register Call Back  ---> Task Queue ---> Call Stack 
+
+fetch() --> Data and Browser/ Node
+    Data: onFullFilled[] :- an array to store fetch API response - resolve()
+          onRejection[] :- an array to store errors - reject()
+          These arrays contain functions to pass the recieved data into usuable format which can be used by user.
+
+    Web Browser/ Node: to send network request. If network request fails, then it goes to the reject(), else it passes the response to resolve() even on HTTP errors like 202,303,404,etc
