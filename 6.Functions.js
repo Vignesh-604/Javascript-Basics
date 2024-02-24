@@ -50,10 +50,10 @@ console.log(this);      // {} for node but for browsers, current context is the 
 
 // this  in functions
 const thisFunc = function() {console.log(this);}
-// thisFunc()                                              // Returns something idk
+thisFunc()                                              // Returns functional execution context (properties of functions)
 
 const thisArrow = () => {console.log(this);}
-thisArrow()                                             // Returns empty object {}
+thisArrow()                                             // Returns golbal execution context ({} for Node)
 
 // Arrow function
 addThree = (num1, num2, num3) => {return num1, num2, num3}      // Explicit return (return and {} required)

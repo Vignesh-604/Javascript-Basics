@@ -56,3 +56,14 @@ fetch() --> Data and Browser/ Node
           These arrays contain functions to pass the recieved data into usuable format which can be used by user.
 
     Web Browser/ Node: to send network request. If network request fails, then it goes to the reject(), else it passes the response to resolve() even on HTTP errors like 202,303,404,etc
+
+*** Javascript and classes ***
+
+OOP : style of writing code / programming paradigm
+    - used to avoid spaghetti code (mess up of code)
+
+Object : collection of properties (variables) and methods (functions)
+
+Parts of OOP:   Object literal -> {}, Constructor function,  Prototypes,  Classes,  Instances
+
+Pillars of OOP: Abstraction,  Encapsulation, Inheritence,  Polymorphism
