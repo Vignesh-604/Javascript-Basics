@@ -17,7 +17,7 @@ function user(name, credits) {
     this.credits = credits
 }
 
-user.prototype.increment = function() {return this.credits + 1}          // creating customfunction
+user.prototype.increment = function() {return this.credits + 1}          // creating custom function
 user.prototype.print = function() {console.log(this.credits);}    // Since func also an object, can inject custom properties
 
 const tim = new user("Tim", 100)                // this keyword used to tell function which instance to use
@@ -94,3 +94,28 @@ Object.setPrototypeOf(professor, date)                              // Professor
 console.log(`${professor.name} joined on ${professor.joinDate}.`);
 
 console.log(professor.name.trueLength());               //Using custom made string function
+
+
+// Property Description
+const desc = Object.getOwnPropertyDescriptor(Math, "PI")
+
+console.log(Math.PI);
+console.log(desc);
+
+const obj = {id : 1, name : " String", alive: true, func: function() {return "Hi"}}
+console.log(Object.getOwnPropertyDescriptor(obj, "name"));
+
+Object.defineProperty(obj, "name", {
+    writable: false,            // Can't overwrite value
+    enumerable: false,          // Can't loop through it's value
+})
+console.log(Object.getOwnPropertyDescriptor(obj, "name"));
+
+obj.name = "Character"
+console.log(obj.name);
+
+for (let [key, value] of Object.entries(obj)) {
+    if (typeof value != "function"){
+        console.log(`${key}: ${value}`);
+    }
+}

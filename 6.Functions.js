@@ -73,4 +73,17 @@ console.log(objReturn());
 
 ( () => {console.log("Arrow function without a name!!!");})();   //Arrow function - simple IIFE
 
-( hello = (user) => {console.log(`Hello ${user}`)})("Bobby");    //IIFE with paramsz
+( hello = (user) => {console.log(`Hello ${user}`)})("Bobby");    //IIFE with params
+
+
+// High oder Functions (HOF) - Functions that take one or more functions as arguments
+
+const diameter = (radius) => 2 * radius
+const area = (radius) => (Math.PI * radius * radius).toFixed(2)
+
+const calculate = function(radius, logic){          // logic holds the name of the function
+        let output = logic(radius)
+    return output;
+}
+console.log("Diameter = " + calculate(5, diameter));    // no ()
+console.log("Area = " + calculate(5, area));

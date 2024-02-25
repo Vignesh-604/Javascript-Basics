@@ -5,6 +5,8 @@ const sym = Symbol("myKey")
 
 const obj = {name:"bob", "lname":"tarts", age:"23", log:true, sym: "symbol1", [sym]: "realSymbol"}
 
+obj["gender"] = "male"                              // adding elements
+
 console.log(obj);
 console.log(obj.name);
 console.log(obj["lname"]);      //Better way of accessing values
@@ -55,7 +57,7 @@ let obj4 = Object.assign({}, obj1, obj2, obj3)      //Here the {} is the target 
 console.log(obj4);                                  //If not provided {}, all objects would append to obj1
 
 let obj5 = {...obj1, ...obj2, ...obj3}              // Using spread operator
-console.log(obj5);
+console.log(obj5);                                  // Opens each obj and inserts the elements into final obj
 
 let users = [
     {id:1, name:"Apple"},
