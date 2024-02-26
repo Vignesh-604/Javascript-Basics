@@ -1,4 +1,4 @@
-// *** call and bind ***
+// *** call ***
 
 function SetUsername(name) {
     this.name = name
