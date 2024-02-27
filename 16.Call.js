@@ -18,6 +18,9 @@ function UserLogin(name, email, password) {
     this.password = password
     console.log(this);
 }
+ // calls both functions with their respective properties under one function name
+let user1 = new UserLogin("Tim", "tim@gmail.com", "password")      
+// console.log(user1);
 
-let user1 = new UserLogin("Tim", "tim@gmail.com", "password")
-console.log(user1);
+let user2 = new SetUsername("bro")
+// console.log(user2);

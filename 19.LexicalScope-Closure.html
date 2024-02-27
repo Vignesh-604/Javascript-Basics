@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Closure aur chai</title>
+    </head>
+    <body style="background-color: #313131;">
+        <h1>Lexical scoping</h1>
+        <h2>Inner functions can access the variables of outer functions. It's called a Lexical scope of that function.</h2>
+        <h1>Closure</h1>
+        <h2>When outer functions return inner functions, these returned functions can be stored in variables. 
+            These functions have access to their lexical scope even
+            after the outer has been executed and its execution context has been deleted.
+        </h2>
+        <button id="orange">Orange</button>
+        <button id="green">Green</button>
+    </body>
+    <script>
+
+    function outer(){
+        // Lexical Scoping
+        let username = "Timmy"
+        // console.log("OUTER", secret);
+
+        function inner(){
+            let secret = "my123"
+            console.log("inner", username);
+        }
+        function innerTwo(){
+            console.log("innerTwo", username);
+            // console.log(secret);                 // Sibling functions don't share scope
+        }
+        inner()
+        innerTwo()
+    }
+    outer()
+    // console.log("TOO OUTER", username);
+
+    // Closure example 1
+    function makeFunc() {
+        const name = "Mozilla";
+
+        function displayName() {
+            console.log(name);
+        }
+        return displayName;             // passing the reference
+    }                    // makeFunc gets executed and destoryed but it's contents can still be accessed by it's child function
+
+    const myFunc = makeFunc();       // myFunc not only takes the refernce of the inner function but also of it's lexical scope
+    myFunc();
+
+    // Closure example 2
+    function makeAdder(x) {
+        return function (y) {
+            return x + y;
+        };
+    }
+
+    const add5 = makeAdder(5);
+    const add10 = makeAdder(10);
+
+    console.log(add5(2)); // 7
+    console.log(add10(2)); // 12
+
+    console.log(makeAdder(20)(20));     // the second arg is for the returning function
+
+    </script>
+    <script>
+        function clickHandler(color){
+            // document.body.style.backgroundColor = `${color}` //immediately executed because it's called with arg
+
+            return function(){
+                document.body.style.backgroundColor = `${color}`
+            }
+        }
+        document.getElementById('orange').onclick = clickHandler("orange")
+        document.getElementById('green').onclick = clickHandler("green")
+
+        // the .onclick event takes a function that is to be executed when the button is clicked
+        // the clickHandler function is called along with the color parameter which contains an inner function
+        // the inner function is executed only when the button is clicked
+        // clickHandler("color")  --click-->  clickHandler("color")()
+
+    </script>
+</html>
