@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <title>Window Objects</title>
+        <script>
+            function nav()
+            {
+                var app=navigator.appVersion;
+                var name = navigator.appName;
+                var codapp = navigator.appCodeName
+                var plat = navigator.platform;
+                var prod = navigator.product;
+                var agent = navigator.userAgent
+                var on = navigator.onLine
+                var lang = navigator.language;
+                document.getElementById("nav").innerHTML=
+                "App version = "+app+
+                "<br>App Name = "+name+
+                "<br>App Code name= "+codapp+
+                "<br>Platform = "+plat+
+                "<br>Product = "+prod+
+                "<br>User Agent = "+agent+
+                "<br>Online = "+on+
+                "<br>App language = "+lang;
+            }
+        </script>
+    </head>
+    <body>
+        <button onclick="nav()" style="padding: 2%;">DETAILS</button>
+        <h4 id="nav"></h4>
+    </body>
+</html>

@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Window Methods</title>
+        <script>
+            function alerto() {
+                // window.alert("Welcome to CS");
+                alert("Welcome to CS");
+            }
+            function conf()
+            {confirm("Burger?")}
+
+            function prom()
+            {prompt("Enter your name:")}
+
+            function size()
+            {
+                var h=window.innerHeight;
+                var w = window.innerWidth;
+                document.getElementById("det").innerHTML="Height = "+h+" Width = "+w;
+            }
+            function clos()
+            {window.close()}
+
+            function resiz()
+            {window.resizeTo("500","500")}
+
+            function mov()
+            {window.moveTo(50,50)}
+        </script>
+    </head>
+    <body>
+        <button onclick="alerto()">Alert</button>
+        <button onclick="conf()">Confirm</button>
+        <button onclick="prom()">Prompt</button>
+        <button onclick="size()">Size</button>
+        <button onclick="resiz()">Resize</button>
+        <button onclick="mov()">Move</button>
+        <button onclick="clos()">Close</button>
+        <h4 id="det"></h4>
+    </body>
+</html>
